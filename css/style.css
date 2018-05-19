@@ -1,0 +1,27 @@
+.title {
+  grid-column: col1 /  col2;
+  grid-row: row0 / row1;
+  font-size: 50px;
+}
+
+#taskList{ 
+  grid-column: col1 / col2;
+  grid-row: row2 / row3;
+}
+
+#inputTask{
+  grid-column: col1 / col2;
+  grid-row: row1 / row2;
+}
+
+#btnTask{ 
+  grid-column: col3 / col4;
+  grid-row: row1 / row2;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: [col0] auto [col1] auto [col2] auto [col3] auto [col4] auto [col5];
+  grid-template-rows: [row0] auto [row1] auto [row2] auto [row3] auto [row4] auto [row5];
+  padding: 30px;
+}
