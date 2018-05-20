@@ -1,4 +1,8 @@
-var submitBtn = document.querySelector("input");
+
+//Fetch html variables
+var submitBtn = document.querySelector("input[type=submit]");
+submitBtn.addEventListener("click",addTask);
+
 var inputTask = document.querySelector("#inputTask");
 
 var inputDate = document.querySelector("#inputDate");
@@ -6,25 +10,32 @@ var inputDate = document.querySelector("#inputDate");
 var inputStatus = document.querySelector("#inputStatus");
 
 var table = document.querySelector("#table");
-//var list = document.querySelector("#taskList");
 
 function addTask(e) {
    e.preventDefault();
+
+    //Create task
     var taskName = document.createElement("td");
-    
-    var taskDate = document.createElement("")
-    
-    task.innerText = inputTask.value
+    taskName.innerText = inputTask.value;
 
-        var checkBox = document.createElement("input");
+    var taskDate = document.createElement("td");
+    taskDate.innerText = inputDate.value;
+   
+    //Create checkbox
+    var checkBox = document.createElement("input");
     checkBox.type = "checkbox";
+    var taskStatus = document.createElement("td");
+    taskStatus.appendChild(checkBox);
     
+    //Add task to table
     var newTableRow = document.createElement("tr");
-    
-    newTableRow.appendChild(task);
+    newTableRow.appendChild(taskName);
+    newTableRow.appendChild(taskDate);
+    newTableRow.appendChild(taskStatus);
     table.appendChild(newTableRow);
-
+   
     inputTask.value = "";
+    inputDate.value = "";
  
 }
 
