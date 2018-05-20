@@ -1,0 +1,16 @@
+.title {
+  font-size: 60px;
+}
+
+table{
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #dddddd;
+  margin-top: 20px;
+
+}
+
+th,td {
+  border: 1px solid #dddddd;
+  padding: 8px;
+}
