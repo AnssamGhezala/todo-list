@@ -4,36 +4,33 @@
 <head>
   <meta charset="UTF-8">
   <title>Task List</title>
-  
-  
-  
       <link rel="stylesheet" href="css/style.css">
 
   
 </head>
 
 <body>
-
-  <head>
-</head>
-
-<body>
   <div class="container">
-    <h1 class="title"> Things To Do </h1>
-  <input id="inputTask" placeholder="insert task">
-  <button id="btnTask" type="button" class="btn btn-primary" value="Add Task" onclick="addTask()"> Add task </button>
-  <ul id="taskList">
-  </ul>
+    <h1 class="title"> THINGS TO DO
+    </h1>
+    <form> <input id="inputTask" placeholder="insert task">
+    <input id="inputDate" placeholder="insert task date">
+    <input id="inputStatus" placeholder="insert task status">
+      <input type="submit">
+    </form> 
+    <table id="table">
+      <tr>
+        <th> Task name </th>
+        <th> Due Date </th>
+        <th> State </th>
+      </tr>
+       <tr>
+         <td>hello</td>
+         <td>21-03-2018</td>
+         <td><input data-row-id="0" type="checkbox"></td>
+      </tr>
+    </table>
     </div>
 </body>
   
-  
-
-    <script  src="js/index.js"></script>
-
-
-
-
-</body>
-
 </html>
