@@ -15,27 +15,54 @@ var inputDate = document.querySelector("#inputDate");
 
 var table = document.querySelector("#table");
 
+
+
+/* Create a Task Object (using a constructor)
+function Task(name,date,checkbox,selectMenu){
+    this.name = name;
+    this.date = date;
+    this.checkbox = checkbox;
+    this.selectMenu = selectMenu;
+}
+var newTask = new Task(inputTask.value,inputDate.value,checkBox,select);
+*/
+
 function addTask(e) {
    e.preventDefault();
-
-    //Create task
+   
+   //Create task
     var taskName = document.createElement("td");
     taskName.innerText = inputTask.value;
+
 
     var taskDate = document.createElement("td");
     taskDate.innerText = inputDate.value;
    
+    taskState = document.createElement("td");
+
     //Create checkbox
     var checkBox = document.createElement("input");
     checkBox.type = "checkbox";
-    var taskStatus = document.createElement("td");
-    taskStatus.appendChild(checkBox);
+    var taskDelete = document.createElement("td");
+    taskDelete.appendChild(checkBox);
+    
+    var select = document.createElement("select");
+    var NotStartedOption = document.createElement("option");
+    NotStartedOption.innerText = "Not Started";
+    var InProgressOption = document.createElement("option");
+    InProgressOption.innerText = "In Progress";
+    var CompletedOption = document.createElement("option");
+    CompletedOption.innerText = "Completed";
+    select.appendChild(NotStartedOption);
+    select.appendChild(InProgressOption);
+    select.appendChild(CompletedOption);
     
     //Add task to table
     var newTableRow = document.createElement("tr");
     newTableRow.appendChild(taskName);
     newTableRow.appendChild(taskDate);
-    newTableRow.appendChild(taskStatus);
+    newTableRow.appendChild(select);
+    newTableRow.appendChild(taskDelete);
     table.appendChild(newTableRow);
    
     inputTask.value = "";

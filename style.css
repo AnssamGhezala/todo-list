@@ -3,7 +3,7 @@
   font-weight: 300;
 }
 
-table{
+#table{
   width: 100%;
   border-collapse: collapse;
   border: 1px solid #dddddd;
@@ -14,4 +14,8 @@ table{
 th,td {
   border: 1px solid #dddddd;
   padding: 8px;
+}
+
+.selectState{
+  width: 100%;
 }
