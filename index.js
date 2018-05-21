@@ -3,11 +3,15 @@
 var submitBtn = document.querySelector("input[type=submit]");
 submitBtn.addEventListener("click",addTask);
 
+var deleteBtn = document.querySelector("input[type=button]");
+deleteBtn.addEventListener("click",deleteTask);
+
+
 var inputTask = document.querySelector("#inputTask");
 
 var inputDate = document.querySelector("#inputDate");
 
-var inputStatus = document.querySelector("#inputStatus");
+// var inputStatus = document.querySelector("#inputStatus");
 
 var table = document.querySelector("#table");
 
@@ -40,3 +44,14 @@ function addTask(e) {
 }
 
 
+function deleteTask(e){
+var boxList = document.querySelectorAll("input[type=checkbox]");
+var index;
+for(index=0; index<boxList.length; index++){
+    if(boxList[index].checked){
+        var tBody = boxList[index].parentNode.parentNode.parentNode;
+        var row = boxList[index].parentNode.parentNode;
+        tBody.removeChild(row);
+    }
+}
+}
