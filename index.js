@@ -56,12 +56,12 @@ function addTask(e) {
     select.appendChild(NotStartedOption);
     select.appendChild(InProgressOption);
     select.appendChild(CompletedOption);
-    
+    taskState.appendChild(select);    
     //Add task to table
     var newTableRow = document.createElement("tr");
     newTableRow.appendChild(taskName);
     newTableRow.appendChild(taskDate);
-    newTableRow.appendChild(select);
+    newTableRow.appendChild(taskState);
     newTableRow.appendChild(taskDelete);
     table.appendChild(newTableRow);
    
