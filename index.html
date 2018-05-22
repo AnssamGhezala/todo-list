@@ -5,39 +5,53 @@
   <meta charset="UTF-8">
   <title>Task List</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+    crossorigin="anonymous">
 </head>
 
 <body>
   <div class="container">
     <h1 class="title"> Things to do
     </h1>
-    <form>
-      <input id="inputTask" type="text" placeholder="insert task" required>
-      <input id="inputDate" type="date" placeholder="insert task date" required>
-      <input type="submit" class="btn btn-primary">
-      <input type="button" class="btn btn-danger" value="Delete">
-    </form>
+    <div class="inputs-container">
+      <form>
+        <input id="inputTask" type="text" placeholder="insert task" required>
+        <input id="inputDate" type="date" placeholder="insert task date" required>
+        <button id="submit" type="submit" class="btn btn-dark"> 
+          <i class="fas fa-plus"></i> Add
+        </button>           
+      </form>
+      <button id="edit" class="btn btn-dark">
+        <i class="fas fa-edit"></i> Edit
+      </button>
+      <button id="delete" class="btn btn-danger"> 
+        <i class="fas fa-times-circle"></i> Delete
+      </button>
+      <button id="save" class="btn btn-success">
+        <i class="fas fa-check"></i> Save
+      </button>
+    </div>
+
+
     <table id="table">
       <tr>
-        <th> Task name </th>
-        <th> Due Date </th>
-        <th> State</th>
-        <th> Delete? </th>
+        <th id="taskHeader" class="header"> Task name </th>
+        <th id "dateHeard" class="header"> Due Date </th>
+        <th id="stateHeader" class="header"> State</th>
+        <th id="deleteHeader"> Delete? </th>
       </tr>
       <tr>
         <td>hello</td>
-        <td>21-03-2018</td>
-        <td> 
-            <select class="selectState">
-                <option>Not Started</option>
-                <option>In Progress</option>
-                <option>Completed</option>
-              </select>
-        </td>
+        <td>2018-03-21</td>
         <td>
-          <input data-row-id="0" type="checkbox">
+          <select>
+            <option>Not Started</option>
+            <option>In Progress</option>
+            <option>Completed</option>
+          </select>
         </td>
+
       </tr>
     </table>
   </div>

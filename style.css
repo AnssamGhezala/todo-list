@@ -3,7 +3,12 @@
   font-weight: 300;
 }
 
-#table{
+.inputs-container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+#table {
   width: 100%;
   border-collapse: collapse;
   border: 1px solid #dddddd;
@@ -11,11 +16,28 @@
 
 }
 
+#delete {
+margin-left: 2px;
+}
+
+#edit {
+margin-left: 2px;
+}
+
+#save {
+  margin-left: 2px;
+}
+
+
+th {
+  cursor: pointer;
+}
+
 th,td {
   border: 1px solid #dddddd;
   padding: 8px;
 }
 
-select{
+select {
   width: 100%;
 }
