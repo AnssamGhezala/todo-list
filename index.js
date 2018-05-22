@@ -1,5 +1,5 @@
 
-//Fetch html variables
+//Fetch html variables and add respective eventListeners
 var form = document.querySelector("form");
 form.addEventListener("submit", addTask);
 
@@ -12,6 +12,7 @@ editBtn.addEventListener("click", edit);
 var submitBtn = document.querySelector("button[type=submit]");
 
 var saveBtn = document.getElementById("save");
+saveBtn.addEventListener("click", save);
 
 var inputTask = document.querySelector("#inputTask");
 
@@ -39,6 +40,7 @@ function Task(name,date,checkbox,selectMenu){
 var newTask = new Task(inputTask.value,inputDate.value,checkBox,select);
 */
 
+//Create columns arrays representing table columns
 var deleteColumn = [];
 var nameColumn = [];
 var dateColumn = [];
@@ -104,20 +106,56 @@ function deleteTask(e) {
     }
 }
 
+var newNameColumn = [];
 
 function edit(e) {
 
     //Set delete column to visible (iterate throw each delete cell)
-        var deleteHeader = document.getElementById("delete");
-        deleteHeader.style.visibility = "visible";
-    
-        var index;
-        for (index = 0; index < deleteColumn.length; index++) {
-            deleteColumn[index].style.visibility = "visible";
-        }
-    
-    
+    var deleteHeader = document.getElementById("delete");
+    deleteHeader.style.visibility = "visible";
 
+    var index;
+    for (index = 0; index < deleteColumn.length; index++) {
+        deleteColumn[index].style.visibility = "visible";
+    }
+
+    //iterate through each name cell
+    for (index = 0; index < nameColumn.length; index++) {
+
+        var inputName = document.createElement("input");
+        inputName.type = "text";
+
+      
+        inputName.defaultValue = nameColumn[index].innerText;
+    
+        inputName.style.margin = "4px";
+        nameColumn[index].parentNode.replaceChild(inputName,nameColumn[index]);
+        nameColumn.pop();
+        nameColumn.push(inputName);
+
+     //   newNameColumn.push(inputName);
+    }
+
+
+
+}
+
+
+function save(e) {
+    var index;
+    for(index=nameColumn.length-1; index>=0;index--) {
+      console.log("nameColumn " + nameColumn[index].value);
+
+      var savedName = document.createElement("td");
+      savedName.innerText = nameColumn[index].value;
+      console.log(savedName);
+      nameColumn[index].parentNode.replaceChild(savedName,nameColumn[index]);
+      nameColumn.pop();
+      nameColumn.push(savedName);
+      
+
+
+    }
 }
 
 function sort(e) {
