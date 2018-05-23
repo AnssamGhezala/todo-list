@@ -1,5 +1,9 @@
 'use strict';
 
+/* 
+clean code: use .map function + create function to append array of elements
+*/
+
 //Fetch html variables and add respective eventListeners
 var form = document.querySelector("form");
 form.addEventListener("submit", addTask);
@@ -30,26 +34,33 @@ for (index = 0; index < headers.length; index++) {
     headers[index].addEventListener("click", sort);
 }
 
-
-/* Create a Task Object (using a constructor)
-function Task(name,date,checkbox,selectMenu){
-    this.name = name;
-    this.date = date;
-    this.checkbox = checkbox;
-    this.selectMenu = selectMenu;
-}
-var newTask = new Task(inputTask.value,inputDate.value,checkBox,select);
+/*Declare variables: Columns corresponding to table columns
+Two types of columns: 
+    column consisting of normal cells (nameColumn with task names, stateColumn with task states...)
+    column consisting of cells being edited (inputColumn with input cells, selectColumn...)
 */
+var inputColumn = [];
+var nameColumn = [];
 
-//Create columns arrays representing table columns
+var selectColumn = [];
+var stateColumn = [];
+
 var deleteColumn = [];
+
 var dateColumn = [];
 
+//Variables to help find the index of selected task state for the select elements
+var selectingIndex;
+var indexOfSelect;
 
-
+//Add task to table
 function addTask(e) {
     e.preventDefault();
 
+    //add existing task to corresponding columns
+    // nameColumn.push(document.getElementById("helloTaskName"));
+    // deleteColumn.push(document.getElementById("helloTaskDelete"));
+    // dateColumn.push(document.getElementById("helloTaskDate"));
     //Create task
     var taskName = document.createElement("td");
     taskName.innerText = inputTask.value;
@@ -69,18 +80,9 @@ function addTask(e) {
     taskDelete.style.visibility = "hidden";
 
     var taskState = document.createElement("td");
+    taskState.innerText = "Not Started";
+    stateColumn.push(taskState);
 
-    var select = document.createElement("select");
-    var NotStartedOption = document.createElement("option");
-    NotStartedOption.innerText = "Not Started";
-    var InProgressOption = document.createElement("option");
-    InProgressOption.innerText = "In Progress";
-    var CompletedOption = document.createElement("option");
-    CompletedOption.innerText = "Completed";
-    select.appendChild(NotStartedOption);
-    select.appendChild(InProgressOption);
-    select.appendChild(CompletedOption);
-    taskState.appendChild(select);
 
     //Add task to table
     var newTableRow = document.createElement("tr");
@@ -95,7 +97,7 @@ function addTask(e) {
 
 }
 
-
+//Delete a task
 function deleteTask(e) {
     var boxList = document.querySelectorAll("input[type=checkbox]");
     var index;
@@ -108,8 +110,15 @@ function deleteTask(e) {
     }
 }
 
-var inputColumn = [];
-var nameColumn = [];
+//Find the index of the select
+function indexFinder() {
+    selectingIndex = this.selectedIndex;
+    console.log(this.selectedIndex);
+    indexOfSelect = this.id;
+    console.log(this.id);
+
+    return this.selectedIndex;
+}
 
 function edit(e) {
 
@@ -121,24 +130,50 @@ function edit(e) {
     for (index = 0; index < deleteColumn.length; index++) {
         deleteColumn[index].style.visibility = "visible";
     }
-
-    //iterate through each name cell
+    var counter = 0;
+    //iterate through each name cell to transform into input cell
     for (index = 0; index < nameColumn.length; index++) {
+        // Create new input element
+
 
         var inputName = document.createElement("input");
         inputName.type = "text";
-
-        // console.log("nameColumn[index].innerText " + nameColumn[index].innerText);
-
-
         inputName.defaultValue = nameColumn[index].innerText;
         inputName.style.margin = "4px";
+
+        //replace current name cell with input cell + add that cell to inputColumn
         nameColumn[index].parentNode.replaceChild(inputName, nameColumn[index]);
-        //  console.log("EDIT: nameColumn array at " + index + " " + nameColumn[index].innerText);
         inputColumn.push(inputName);
+
+
+
+        var select = document.createElement("select");
+        select.id = counter++;
+        var NotStartedOption = document.createElement("option");
+        NotStartedOption.innerText = "Not Started";
+        var InProgressOption = document.createElement("option");
+        InProgressOption.innerText = "In Progress";
+        var CompletedOption = document.createElement("option");
+        CompletedOption.innerText = "Completed";
+        select.appendChild(NotStartedOption);
+        select.appendChild(InProgressOption);
+        select.appendChild(CompletedOption);
+        select.addEventListener("change", indexFinder);
+       
+        if (indexOfSelect == index) {
+           // console.log("EQUAL");
+            select.selectedIndex = selectingIndex;
+        }
+
+        selectColumn.push(select);
+        stateColumn[index].parentNode.replaceChild(select, stateColumn[index]);
+
     }
 
+
+
 }
+
 
 
 
@@ -146,20 +181,42 @@ function edit(e) {
 function save(e) {
     var index;
     length = nameColumn.length;
+
+    //reset nameColumn
     nameColumn = [];
-    for (index = 0; index<length; index++) {
+    stateColumn = [];
+    //iterate through each input cell to transform back to normal cell
+    for (index = 0; index < length; index++) {
 
-
-        //console.log("SAVE: nameColumn array at " + index + " " + nameColumn[index].innerText);
-
+        //Transform back to name cell
         var savedName = document.createElement("td");
         savedName.innerText = inputColumn[index].value;
-        //  // console.log(savedName);
+
         inputColumn[index].parentNode.replaceChild(savedName, inputColumn[index]);
+
+        //update nameColumn with new saved task names
         nameColumn.push(savedName);
 
+
+
+
+        //Transform back to normal state cell
+        var savedState = document.createElement("td");
+        savedState.innerText = selectColumn[index].options[selectColumn[index].selectedIndex].value;
+
+        selectColumn[index].parentNode.replaceChild(savedState, selectColumn[index]);
+        stateColumn.push(savedState);
+
+
+
+
+
+
     }
+
+    //reset input columns
     inputColumn = [];
+    selectColumn = [];
 
 
 }
