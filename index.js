@@ -1,3 +1,4 @@
+'use strict';
 
 //Fetch html variables and add respective eventListeners
 var form = document.querySelector("form");
@@ -42,8 +43,9 @@ var newTask = new Task(inputTask.value,inputDate.value,checkBox,select);
 
 //Create columns arrays representing table columns
 var deleteColumn = [];
-var nameColumn = [];
 var dateColumn = [];
+
+
 
 function addTask(e) {
     e.preventDefault();
@@ -57,7 +59,6 @@ function addTask(e) {
     taskDate.innerText = inputDate.value;
     dateColumn.push(taskDate);
 
-    taskState = document.createElement("td");
 
     //Create checkbox
     var checkBox = document.createElement("input");
@@ -67,6 +68,7 @@ function addTask(e) {
     deleteColumn.push(taskDelete);
     taskDelete.style.visibility = "hidden";
 
+    var taskState = document.createElement("td");
 
     var select = document.createElement("select");
     var NotStartedOption = document.createElement("option");
@@ -106,7 +108,8 @@ function deleteTask(e) {
     }
 }
 
-var newNameColumn = [];
+var inputColumn = [];
+var nameColumn = [];
 
 function edit(e) {
 
@@ -125,37 +128,37 @@ function edit(e) {
         var inputName = document.createElement("input");
         inputName.type = "text";
 
-      
+        // console.log("nameColumn[index].innerText " + nameColumn[index].innerText);
+
         inputName.defaultValue = nameColumn[index].innerText;
-    
         inputName.style.margin = "4px";
-        nameColumn[index].parentNode.replaceChild(inputName,nameColumn[index]);
-        nameColumn.pop();
-        nameColumn.push(inputName);
-
-     //   newNameColumn.push(inputName);
+        nameColumn[index].parentNode.replaceChild(inputName, nameColumn[index]);
+        console.log("EDIT: nameColumn array at " + index + " " + nameColumn[index].innerText);
+        inputColumn.push(inputName);
     }
-
-
 
 }
 
 
+
+
 function save(e) {
     var index;
-    for(index=nameColumn.length-1; index>=0;index--) {
-      console.log("nameColumn " + nameColumn[index].value);
+    for (index = nameColumn.length - 1; index >= 0; index--) {
 
-      var savedName = document.createElement("td");
-      savedName.innerText = nameColumn[index].value;
-      console.log(savedName);
-      nameColumn[index].parentNode.replaceChild(savedName,nameColumn[index]);
-      nameColumn.pop();
-      nameColumn.push(savedName);
-      
+
+        //console.log("SAVE: nameColumn array at " + index + " " + nameColumn[index].innerText);
+        console.log("SAVE: inputColumn array at " + index + " " + inputColumn[index].value);
+
+
+        var savedName = document.createElement("td");
+        savedName.innerText = inputColumn[index].value;
+        //  // console.log(savedName);
+        inputColumn[index].parentNode.replaceChild(savedName, inputColumn[index]);
 
 
     }
+
 }
 
 function sort(e) {
