@@ -130,10 +130,11 @@ function edit(e) {
 
         // console.log("nameColumn[index].innerText " + nameColumn[index].innerText);
 
+
         inputName.defaultValue = nameColumn[index].innerText;
         inputName.style.margin = "4px";
         nameColumn[index].parentNode.replaceChild(inputName, nameColumn[index]);
-        console.log("EDIT: nameColumn array at " + index + " " + nameColumn[index].innerText);
+        //  console.log("EDIT: nameColumn array at " + index + " " + nameColumn[index].innerText);
         inputColumn.push(inputName);
     }
 
@@ -144,20 +145,22 @@ function edit(e) {
 
 function save(e) {
     var index;
-    for (index = nameColumn.length - 1; index >= 0; index--) {
+    length = nameColumn.length;
+    nameColumn = [];
+    for (index = 0; index<length; index++) {
 
 
         //console.log("SAVE: nameColumn array at " + index + " " + nameColumn[index].innerText);
-        console.log("SAVE: inputColumn array at " + index + " " + inputColumn[index].value);
-
 
         var savedName = document.createElement("td");
         savedName.innerText = inputColumn[index].value;
         //  // console.log(savedName);
         inputColumn[index].parentNode.replaceChild(savedName, inputColumn[index]);
-
+        nameColumn.push(savedName);
 
     }
+    inputColumn = [];
+
 
 }
 
