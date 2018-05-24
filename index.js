@@ -1,7 +1,10 @@
 'use strict';
 
-/* 
+/** 
 clean code: use .map function + create function to append array of elements
+add cancel button
+improve edit task state functionality
+
 */
 
 //Fetch html variables and add respective eventListeners
@@ -28,6 +31,8 @@ var table = document.querySelector("#table");
 var taskHeader = document.querySelector("#taskHeader");
 var dateHeader = document.querySelector("#dateHeader");
 var stateHeader = document.querySelector("#stateHeader");
+var deleteHeader = document.getElementById("deleteHeader");
+
 var headers = document.querySelectorAll(".header");
 var index;
 for (index = 0; index < headers.length; index++) {
@@ -120,10 +125,11 @@ function indexFinder() {
     return this.selectedIndex;
 }
 
+
 function edit(e) {
 
     //Set delete column to visible (iterate throw each delete cell)
-    var deleteHeader = document.getElementById("delete");
+
     deleteHeader.style.visibility = "visible";
 
     var index;
@@ -135,15 +141,16 @@ function edit(e) {
     for (index = 0; index < nameColumn.length; index++) {
         // Create new input element
 
-
+        var nameCell = document.createElement("td");
         var inputName = document.createElement("input");
         inputName.type = "text";
         inputName.defaultValue = nameColumn[index].innerText;
-        inputName.style.margin = "4px";
+        // inputName.style.margin = "4px";
+        nameCell.appendChild(inputName);
 
         //replace current name cell with input cell + add that cell to inputColumn
-        nameColumn[index].parentNode.replaceChild(inputName, nameColumn[index]);
-        inputColumn.push(inputName);
+        nameColumn[index].parentNode.replaceChild(nameCell, nameColumn[index]);
+        inputColumn.push(nameCell);
 
 
 
@@ -159,9 +166,8 @@ function edit(e) {
         select.appendChild(InProgressOption);
         select.appendChild(CompletedOption);
         select.addEventListener("change", indexFinder);
-       
+
         if (indexOfSelect == index) {
-           // console.log("EQUAL");
             select.selectedIndex = selectingIndex;
         }
 
@@ -181,16 +187,17 @@ function edit(e) {
 function save(e) {
     var index;
     length = nameColumn.length;
-
+    deleteHeader.style.visibility = "hidden";
     //reset nameColumn
     nameColumn = [];
     stateColumn = [];
     //iterate through each input cell to transform back to normal cell
     for (index = 0; index < length; index++) {
-
+        deleteColumn[index].style.visibility = "hidden";
+        console.log(inputColumn[index].childNodes[0].value);
         //Transform back to name cell
         var savedName = document.createElement("td");
-        savedName.innerText = inputColumn[index].value;
+        savedName.innerText = inputColumn[index].childNodes[0].value;
 
         inputColumn[index].parentNode.replaceChild(savedName, inputColumn[index]);
 
@@ -213,6 +220,7 @@ function save(e) {
 
 
     }
+
 
     //reset input columns
     inputColumn = [];
