@@ -153,7 +153,7 @@ function edit(e) {
         inputColumn.push(nameCell);
 
 
-
+        var selectCell = document.createElement("td");
         var select = document.createElement("select");
         select.id = counter++;
         var NotStartedOption = document.createElement("option");
@@ -171,8 +171,9 @@ function edit(e) {
             select.selectedIndex = selectingIndex;
         }
 
-        selectColumn.push(select);
-        stateColumn[index].parentNode.replaceChild(select, stateColumn[index]);
+        selectCell.appendChild(select);
+        selectColumn.push(selectCell);
+        stateColumn[index].parentNode.replaceChild(selectCell, stateColumn[index]);
 
     }
 
@@ -188,13 +189,15 @@ function save(e) {
     var index;
     length = nameColumn.length;
     deleteHeader.style.visibility = "hidden";
+
     //reset nameColumn
     nameColumn = [];
     stateColumn = [];
+
     //iterate through each input cell to transform back to normal cell
     for (index = 0; index < length; index++) {
         deleteColumn[index].style.visibility = "hidden";
-        console.log(inputColumn[index].childNodes[0].value);
+
         //Transform back to name cell
         var savedName = document.createElement("td");
         savedName.innerText = inputColumn[index].childNodes[0].value;
@@ -209,7 +212,7 @@ function save(e) {
 
         //Transform back to normal state cell
         var savedState = document.createElement("td");
-        savedState.innerText = selectColumn[index].options[selectColumn[index].selectedIndex].value;
+        savedState.innerText = selectColumn[index].childNodes[0].options[selectColumn[index].childNodes[0].selectedIndex].value;
 
         selectColumn[index].parentNode.replaceChild(savedState, selectColumn[index]);
         stateColumn.push(savedState);
