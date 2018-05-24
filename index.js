@@ -33,6 +33,14 @@ var dateHeader = document.querySelector("#dateHeader");
 var stateHeader = document.querySelector("#stateHeader");
 var deleteHeader = document.getElementById("deleteHeader");
 
+
+var helloName = document.getElementById("helloTaskName");
+var helloDate = document.getElementById("helloTaskDate");
+var helloState = document.getElementById("helloTaskSelect");
+var helloDelete = document.getElementById("helloTaskDelete");
+
+
+
 var headers = document.querySelectorAll(".header");
 var index;
 for (index = 0; index < headers.length; index++) {
@@ -46,13 +54,17 @@ Two types of columns:
 */
 var inputColumn = [];
 var nameColumn = [];
+nameColumn.push(helloName);
 
 var selectColumn = [];
 var stateColumn = [];
+stateColumn.push(helloState);
 
 var deleteColumn = [];
+deleteColumn.push(helloDelete);
 
 var dateColumn = [];
+dateColumn.push(helloDate);
 
 //Variables to help find the index of selected task state for the select elements
 var selectingIndex;
@@ -216,11 +228,6 @@ function save(e) {
 
         selectColumn[index].parentNode.replaceChild(savedState, selectColumn[index]);
         stateColumn.push(savedState);
-
-
-
-
-
 
     }
 
