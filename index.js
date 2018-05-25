@@ -127,32 +127,37 @@ function deleteTask(e) {
     }
 }
 
+var indexColumn = [];
 //Find the index of the select
 function indexFinder() {
     selectingIndex = this.selectedIndex;
-    console.log(this.selectedIndex);
+   // console.log(this.selectedIndex);
     indexOfSelect = this.id;
-    console.log(this.id);
-
+   // console.log(this.id);
+ //   console.log("indexFinder for select number " + this.id );
+    indexColumn.push(this.selectedIndex);
     return this.selectedIndex;
 }
 
 
 function edit(e) {
 
+  
+   
     //Set delete column to visible (iterate throw each delete cell)
-
+   // console.log(indexColumn[index]);
     deleteHeader.style.visibility = "visible";
 
     var index;
     for (index = 0; index < deleteColumn.length; index++) {
         deleteColumn[index].style.visibility = "visible";
     }
+    
     var counter = 0;
     //iterate through each name cell to transform into input cell
     for (index = 0; index < nameColumn.length; index++) {
         // Create new input element
-
+   
         var nameCell = document.createElement("td");
         var inputName = document.createElement("input");
         inputName.type = "text";
@@ -179,15 +184,32 @@ function edit(e) {
         select.appendChild(CompletedOption);
         select.addEventListener("change", indexFinder);
 
-        if (indexOfSelect == index) {
-            select.selectedIndex = selectingIndex;
-        }
+        // if (indexOfSelect == index) {
+        //     console.log("selectingIndex");
+        //     select.selectedIndex = selectingIndex;
+        // }
 
         selectCell.appendChild(select);
         selectColumn.push(selectCell);
-        stateColumn[index].parentNode.replaceChild(selectCell, stateColumn[index]);
 
+        stateColumn[index].parentNode.replaceChild(selectCell, stateColumn[index]);        
     }
+    if(indexColumn.length != nameColumn.length ){
+        var rect = indexColumn.length-nameColumn.length;
+        while(rect>0){
+            console.log("yo");
+            rect--;
+            indexColumn.shift();
+        }
+    }
+    console.log("EDIT: index Column is " + indexColumn);
+
+    var j;
+    for(j=0; j<indexColumn.length;j++){
+        console.log("selected index is for " + j + " is " + indexColumn[j]);
+     selectColumn[j].childNodes[0].selectedIndex = indexColumn[j];
+    }
+    
 
 
 
