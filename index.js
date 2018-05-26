@@ -70,6 +70,9 @@ deleteColumn.push(helloDelete);
 var dateColumn = [];
 dateColumn.push(helloDate);
 
+var dateSelectColumn = [];
+dateSelectColumn.push(document.getElementById("dateSelect"));
+
 
 //Add task to table
 function addTask(e) {
@@ -82,8 +85,19 @@ function addTask(e) {
     nameColumn.push(taskName);
 
     var taskDate = document.createElement("td");
-    taskDate.innerText = inputDate.value;
+    var taskDateText = document.createElement("span");
+    taskDateText.className = "date";
+    taskDateText.innerText = inputDate.value;
+    taskDate.appendChild(taskDateText);
     dateColumn.push(taskDate);
+
+    var taskSelectDate = document.createElement("input");
+    taskSelectDate.type = "date";
+    taskSelectDate.className = "dateSelect";
+    taskSelectDate.value = taskDateText.innerText;
+    taskDate.appendChild(taskSelectDate);
+    dateSelectColumn.push(taskSelectDate);
+
 
 
     //Create checkbox
@@ -201,10 +215,17 @@ function save(e) {
         //update nameColumn with new saved task names
         nameColumn.push(savedName);
 
+
+        
+
+
+        //IDK FOR SOME REASON THE FIRST TASK HAS A TEXT ELEMENT AS ITS FIRST CHILD INSTEAD OF A SPAN ELEMENT
         if(index==0){
             stateColumn[index].childNodes[1].innerText = selectColumn[index].options[selectColumn[index].selectedIndex].value;
+            dateColumn[index].childNodes[1].innerText = dateSelectColumn[index].value;
         }else{
             stateColumn[index].childNodes[0].innerText = selectColumn[index].options[selectColumn[index].selectedIndex].value;
+            dateColumn[index].childNodes[0].innerText = dateSelectColumn[index].value;
 
         }
     }

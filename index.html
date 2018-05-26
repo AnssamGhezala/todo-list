@@ -38,13 +38,15 @@
     <table id="table">
       <tr>
         <th id="taskHeader" class="header"> Task name </th>
-        <th id "dateHeard" class="header"> Due Date </th>
+        <th id "dateHeader" class="header"> Due Date </th>
         <th id="stateHeader" class="header"> State</th>
         <th id="deleteHeader" style="visibility: hidden"> Delete? </th>
       </tr>
       <tr>
         <td id="helloTaskName">hello</td>
-        <td id="helloTaskDate">2018-03-21</td>
+        <td id="helloTaskDate"> <span class="date">2018-03-21</span>
+        <input type = "date" id="dateSelect" class = "dateSelect" value= "2018-03-21">
+        </td>
         <td id="helloTaskSelect">
           <span class="taskStateText">Not Started</span>
           <select id="helloSelect">

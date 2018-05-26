@@ -26,6 +26,17 @@ table .taskStateText {
   display: none;
 }
 
+table .dateSelect {
+  display: none;
+}
+
+.editTable .dateSelect {
+  display: block;
+}
+
+.editTable .date {
+  display: none;
+}
 
 #table {
   width: 100%;
