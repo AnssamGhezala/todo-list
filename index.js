@@ -77,7 +77,7 @@ dateSelectColumn.push(document.getElementById("dateSelect"));
 //Add task to table
 function addTask(e) {
     e.preventDefault();
-
+    editBtn.disabled = false;
 
     //Create task
     var taskName = document.createElement("td");
@@ -150,8 +150,18 @@ function deleteTask(e) {
             var tBody = boxList[index].parentNode.parentNode.parentNode;
             var row = boxList[index].parentNode.parentNode;
             tBody.removeChild(row);
+            nameColumn.splice(nameColumn[index],1);
+            deleteColumn.splice(deleteColumn[index],1);
         }
     }
+    submitBtn.disabled = false;
+    table.className =  "";
+    saveBtn.style.display = "none";
+    deleteBtn.style.display = "none";
+    if(nameColumn.length == 0){
+        editBtn.disabled = true;
+    }
+save();
 }
 
 
@@ -159,7 +169,9 @@ function deleteTask(e) {
 function edit(e) {
     // add classname to table
     table.className = "editTable";
-
+    submitBtn.disabled = true;
+    saveBtn.style.display = "block";
+    deleteBtn.style.display = "block";
     // Set delete column to visible (iterate throw each delete cell)
     deleteHeader.style.visibility = "visible";
 
@@ -198,6 +210,7 @@ function save(e) {
     length = nameColumn.length;
     deleteHeader.style.visibility = "hidden";
 
+    submitBtn.disabled = false;
     //reset nameColumn
     nameColumn = [];
     // stateColumn = [];
@@ -234,7 +247,8 @@ function save(e) {
     //reset input columns
     inputColumn = [];
     
-
+    saveBtn.style.display = "none";
+    deleteBtn.style.display = "none";
 
 }
 
