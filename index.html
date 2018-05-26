@@ -5,7 +5,8 @@
   <meta charset="UTF-8">
   <title>Task List</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+    crossorigin="anonymous">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
     crossorigin="anonymous">
 </head>
@@ -18,14 +19,14 @@
       <form>
         <input id="inputTask" type="text" placeholder="insert task" required>
         <input id="inputDate" type="date" placeholder="insert task date" required>
-        <button id="submit" type="submit" class="btn btn-dark"> 
+        <button id="submit" type="submit" class="btn btn-dark">
           <i class="fas fa-plus"></i> Add
-        </button>           
+        </button>
       </form>
       <button id="edit" class="btn btn-dark">
         <i class="fas fa-edit"></i> Edit
       </button>
-      <button id="delete" class="btn btn-danger"> 
+      <button id="delete" class="btn btn-danger">
         <i class="fas fa-times-circle"></i> Delete
       </button>
       <button id="save" class="btn btn-success">
@@ -44,14 +45,17 @@
       <tr>
         <td id="helloTaskName">hello</td>
         <td id="helloTaskDate">2018-03-21</td>
-        <td id="helloTaskSelect"> Not Started
-          <!-- <select id="helloTaskSelect">
+        <td id="helloTaskSelect">
+          <span class="taskStateText">Not Started</span>
+          <select id="helloSelect">
             <option>Not Started</option>
             <option>In Progress</option>
             <option>Completed</option>
-          </select> -->
+          </select>
         </td>
-        <td id="helloTaskDelete" style="visibility: hidden"><input type="checkbox"></td>
+        <td id="helloTaskDelete" style="visibility: hidden">
+          <input type="checkbox">
+        </td>
       </tr>
     </table>
   </div>

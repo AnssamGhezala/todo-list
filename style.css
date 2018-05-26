@@ -8,6 +8,25 @@
   justify-content: flex-start;
 }
 
+table select {
+  display: none;
+}
+
+
+table .taskStateText {
+  display: block;
+}
+
+.editTable select {
+  display: block;
+}
+
+
+.editTable .taskStateText {
+  display: none;
+}
+
+
 #table {
   width: 100%;
   border-collapse: collapse;
