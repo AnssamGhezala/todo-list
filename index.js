@@ -167,7 +167,7 @@ function edit(e) {
     for (index = 0; index < deleteColumn.length; index++) {
         deleteColumn[index].style.visibility = "visible";
     }
-
+    
     // iterate through each name cell to transform into input cell
     for (index = 0; index < nameColumn.length; index++) {
         // Create new input element
